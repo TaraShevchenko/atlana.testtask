@@ -19,19 +19,17 @@ const App = () => {
   const [profileLoading, setProfileLoading] = useState<boolean>(false)
 
   const getUsers = async (query: string, setLoading: Dispatch<SetStateAction<boolean>>) => {
-    if (query) {
-      const response = await fetch("https://api.github.com/search/users?per_page=10&q=" + convertStringToURLSearchParams(query)).then(res => res.json())
-      const getProfiles = response.items.map((el: any) => fetch(el.url).then(res => res.json()))
-      const profiles = await Promise.all(getProfiles)
-      setUsers(profiles)
-    }
+    const response = await fetch("https://api.github.com/search/users?per_page=10&q=" + convertStringToURLSearchParams(query ? query : "")).then(res => res.json())
+    const getProfiles = response.items.map((el: any) => fetch(el.url).then(res => res.json()))
+    const profiles = await Promise.all(getProfiles)
+    setUsers(profiles)
     setLoading(false)
   }
 
   const getProfile = async (id: number) => {
     if (users) {
       setProfileLoading(true)
-      const getRepositories = (): Promise<RepositoryType[]> => fetch(users[id].repos_url + "?per_page=5").then(res => res.json())
+      const getRepositories = (): Promise<RepositoryType[]> => fetch(users[id].repos_url).then(res => res.json())
       const repositories = await getRepositories()
 
       setUser(users[id])
@@ -41,8 +39,8 @@ const App = () => {
   }
 
   const getRepositories = async (query: string, setLoading: Dispatch<SetStateAction<boolean>>) => {
-    if (query && user) {
-      const queryString = `https://api.github.com/search/repositories?q=${convertStringToURLSearchParams(query)}+user:${user.login}&per_page=5`
+    if (user) {
+      const queryString = `https://api.github.com/search/repositories?q=${convertStringToURLSearchParams(query ? query : "")}+user:${user.login}`
       const response = await fetch(queryString).then(res => res.json())
       setRepositories(response.items)
     }
