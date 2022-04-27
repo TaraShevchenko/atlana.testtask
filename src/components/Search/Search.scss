@@ -1,0 +1,23 @@
+.search__title {
+  text-align: center;
+}
+
+.search .search__list {
+  padding: 0 10px;
+}
+
+.users_list {
+  .ant-list-item-meta-title {
+    transition: color .5s ease;
+  }
+
+  .ant-list-item:hover {
+    cursor: pointer;
+
+    .ant-list-item-meta-title {
+      transition: color .5s ease;
+      color: #1890ff;
+    }
+  }
+
+}

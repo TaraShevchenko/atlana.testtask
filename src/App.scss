@@ -1,0 +1,33 @@
+body {
+  background: rgba(231, 227, 255, 0.2);
+  overflow-x: hidden;
+}
+
+h2 {
+  text-align: center;
+}
+
+.app {
+  padding: 20px 0;
+}
+
+.block {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 24px rgba(0, 0, 0, .05);
+  padding: 20px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    background: rgba(231, 227, 255, 0.1);
+    border-radius: 100px;
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background-color: rgba(231, 227, 255, 1);
+  }
+
+}

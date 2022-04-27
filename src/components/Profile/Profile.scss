@@ -1,0 +1,29 @@
+.profile__info {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.profile__name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.profile__skeleton {
+  display: flex;
+  .ant-skeleton-element .ant-skeleton-image {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+  }
+}
+
+.profile__list {
+  margin-left: 20px;
+}
+
+.list__item {
+  span {
+    color: #00000073;
+  }
+}
