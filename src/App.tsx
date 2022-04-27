@@ -8,7 +8,7 @@ import {convertStringToURLSearchParams} from "./utils/convertStringToURLSearchPa
 import {UserType, RepositoryType} from "./types"
 
 import "./App.scss"
-import 'antd/dist/antd.less';
+import 'antd/dist/antd.css';
 
 
 const App = () => {
@@ -24,8 +24,8 @@ const App = () => {
       const getProfiles = response.items.map((el: any) => fetch(el.url).then(res => res.json()))
       const profiles = await Promise.all(getProfiles)
       setUsers(profiles)
-      setLoading(false)
     }
+    setLoading(false)
   }
 
   const getProfile = async (id: number) => {
@@ -45,8 +45,8 @@ const App = () => {
       const queryString = `https://api.github.com/search/repositories?q=${convertStringToURLSearchParams(query)}+user:${user.login}&per_page=5`
       const response = await fetch(queryString).then(res => res.json())
       setRepositories(response.items)
-      setLoading(false)
     }
+    setLoading(false)
   }
 
   return (
